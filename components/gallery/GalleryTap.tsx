@@ -13,20 +13,20 @@ const GalleryTap: React.FC<GalleryTapProps> = ({ image }) => {
     <Tab className="relative flex aspect-square cursor-pointer items-center justify-center rounded-md bg-white">
       {({ selected }) => (
         <div>
+          <span
+            className={cn(
+              "absolute inset-0 rounded-md ring-2 ring-offset-2 bg-gray-100",
+              selected ? "ring-black" : "ring-transparent"
+            )}
+          />
           <span>
             <Image
               fill
               src={image.url}
               alt="product image"
-              className=" object-cover object-center"
+              className=" object-cover object-center rounded-md"
             />
           </span>
-          <span
-            className={cn(
-              "absolute inset-0 rounded-md ring-2 ring-offset-2",
-              selected ? "ring-black" : "ring-transparent"
-            )}
-          ></span>
         </div>
       )}
     </Tab>
