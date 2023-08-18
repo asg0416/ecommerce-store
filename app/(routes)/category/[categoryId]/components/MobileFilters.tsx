@@ -7,6 +7,7 @@ import { Dialog } from "@headlessui/react";
 import { Plus, X } from "lucide-react";
 import { Fragment, useState } from "react";
 import Filter from "./Filter";
+import Background from "@/components/ui/background";
 
 interface MobileFiltersProps {
   sizes: Size[];
@@ -31,7 +32,7 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({ sizes, colors }) => {
         onClose={onClose}
       >
         {/* Background */}
-        <div className="fixed inset-0 bg-black bg-opacity-25" />
+        <Background opacity="25"/>
 
         {/* Dialog position*/}
         <div className="fixed inset-0 z-40 flex">

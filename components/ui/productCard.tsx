@@ -7,6 +7,8 @@ import { Product } from "@/types";
 import IconButton from "@/components/ui/iconButton";
 import Currency from "@/components/ui/currency";
 import { useRouter } from "next/navigation";
+import usePreviewModal from "@/hooks/usePreviewModal";
+import { MouseEventHandler } from "react";
 
 interface ProductCardProps {
   data: Product;
@@ -14,12 +16,22 @@ interface ProductCardProps {
 
 // 상품 카드 컴포넌트
 const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
+  const {onOpen} = usePreviewModal();
   const router = useRouter();
+
   const onClickHandler = () => {
     router.push(`/product/${data?.id}`)
   }
+
+  const onPreview: MouseEventHandler<HTMLButtonElement> = (e) =>{
+    e.stopPropagation();
+    onOpen(data);
+  }
   return (
-    <div onClick={onClickHandler} className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4">
+    <div
+      onClick={onClickHandler}
+      className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4"
+    >
       {/* Images and Actions */}
       <div className=" aspect-square rounded-xl bg-gray-100 relative">
         <Image
@@ -31,7 +43,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
         <div className=" opacity-0 group-hover:opacity-100 transition absolute w-full px-6 bottom-5">
           <div className="flex gap-x-6 justify-center">
             <IconButton
-              onClick={() => {}}
+              onClick={onPreview}
               icon={<Expand size={20} className=" text-gray-600" />}
             />
             <IconButton
@@ -48,7 +60,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
       </div>
       {/* Price */}
       <div className="flex items-center justify-between">
-        <Currency value={data.price}/>
+        <Currency value={data.price} />
       </div>
     </div>
   );
