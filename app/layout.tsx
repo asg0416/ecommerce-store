@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import MountWrapper from "@/components/wrapper/MountWrapper";
 import PreviewModal from "@/components/PreviewModal";
+import { Toaster } from "react-hot-toast";
 
 const font = Urbanist({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body className={font.className}>
         <MountWrapper>
           <PreviewModal />
+          <Toaster/>
         </MountWrapper>
         <Navbar />
         {children}
