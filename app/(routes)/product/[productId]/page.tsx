@@ -1,3 +1,5 @@
+export const revalidate = 0;
+
 import getProduct from "@/actions/get-product";
 import getProducts from "@/actions/get-products";
 import Info from "@/components/Info";
@@ -10,7 +12,6 @@ interface ProductPageProps {
     productId: string;
   };
 }
-export const revalidate = 0;
 
 // 개별 상품 상세 페이지
 const ProductPage: React.FC<ProductPageProps> = async ({ params }) => {
